@@ -164,6 +164,32 @@ Sub-commands:
 \hrulefill
 
 %
+\rosverb{interface} Various ROS interfaces
+(actions/topics/services)-related sub-commands.
+Interface type can be filtered with either of the following option,
+`\ddash only-actions', `\ddash only-msgs', `\ddash only-srvs'.
+%
+\\
+Sub-commands:
+\\
+%
+\begin{tabularx}{\linewidth}{lX}
+\smallhspace \rossubverb{list}     & List all interface types available.                            \\
+\smallhspace \rossubverb{package}  & Output a list of available interface types within one package. \\
+\smallhspace \rossubverb{packages} & Output a list of packages that provide interfaces.             \\
+\smallhspace \rossubverb{show}     & Output the interface definition.
+\end{tabularx}
+%
+Examples:
+\\
+\terminal{ros2 interface list} \\
+\terminal{ros2 interface package std\_msgs} \\
+\terminal{ros2 interface packages \ddash only-msgs} \\
+\terminal{ros2 interface show geometry\_msgs/msg/Pose}
+
+\hrulefill
+
+%
 \rosverb{launch} Allows to run a launch file in an arbitrary package
 without to cd there first.
 \\
