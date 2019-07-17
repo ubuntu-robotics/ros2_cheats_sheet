@@ -34,8 +34,8 @@
 \cfoot{\copyright~2019 Canonical} % Actual footer text
 
 % A bunch of command for boilerplate text
-\newcommand{\rosverb}[1]{\textbf{\sffamily\color{blue}#1}~~}
-\newcommand{\rossubverb}[1]{{\sffamily\color{blue}#1}~~}
+\newcommand{\clicmd}[1]{\textbf{\sffamily\color{blue}#1}~~}
+\newcommand{\cliverb}[1]{{\sffamily\color{blue}#1}~~}
 \newcommand{\textangles}[1]{\textless #1\textgreater}
 \newcommand{\smallhspace}{\-\hspace{0.3cm}}
 \newcommand{\terminal}[1]{\-\hspace{0.5cm}{\sffamily\$ #1}}
@@ -56,21 +56,21 @@
 \textbf{Command Line Interface}
 
 %
-All ROS 2 CLI tools start with the prefix `ros2' followed by a verb,
-a sub-verb and (possibly) positional/optional arguments.
+All ROS 2 CLI tools start with the prefix `ros2' followed by a command,
+a verb and (possibly) positional/optional arguments.
 
 For any tool, the documentation is accessible with,\\
 %
-\terminal{ros2 \rosverb{verb} \ddash help}\\
+\terminal{ros2 \clicmd{command} \ddash help}\\
 %
-and similarly for sub-verb documentation,\\
+and similarly for verb documentation,\\
 %
-\terminal{ros2 \rosverb{verb} \rossubverb{sub\_verb} -h}
+\terminal{ros2 \clicmd{command} \cliverb{verb} -h}
 
-Similarly, auto-completion is available for all (sub-)verbs and
+Similarly, auto-completion is available for all commands/verbs and
 most positional/optional arguments. E.g.,\\
 %
-\terminal{ros2 \rosverb{verb} [tab][tab]}
+\terminal{ros2 \clicmd{command} [tab][tab]}
 
 Some of the examples below rely on:\\
 \href{https://github.com/ros2/demos}{ROS 2 demos package}.
@@ -78,16 +78,16 @@ Some of the examples below rely on:\\
 \hrulefill
 
 %
-\rosverb{action} Allows to manually send a goal and
+\clicmd{action} Allows to manually send a goal and
 displays debugging information about actions.
 \\
-Sub-commands:
+Verbs:
 \\
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{info}        & Output information about an action. \\
-\smallhspace \rossubverb{list}        & Output a list of action names.      \\
-\smallhspace \rossubverb{send\_goal}  & Send an action goal.                \\
-\smallhspace \rossubverb{show}        &  Output the action definition.
+\smallhspace \cliverb{info}        & Output information about an action. \\
+\smallhspace \cliverb{list}        & Output a list of action names.      \\
+\smallhspace \cliverb{send\_goal}  & Send an action goal.                \\
+\smallhspace \cliverb{show}        &  Output the action definition.
 \end{tabularx}
 %
 Examples:
@@ -101,15 +101,15 @@ Examples:
 \hrulefill
 
 %
-\rosverb{bag} Allows to record/play topics to/from a rosbag.
+\clicmd{bag} Allows to record/play topics to/from a rosbag.
 \\
-Sub-commands:
+Verbs:
 \\
 %
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{info}      & Output information of a bag.\\
-\smallhspace \rossubverb{play}      & Play a bag.\\
-\smallhspace \rossubverb{record}    & Record a bag.
+\smallhspace \cliverb{info}      & Output information of a bag.\\
+\smallhspace \cliverb{play}      & Play a bag.\\
+\smallhspace \cliverb{record}    & Record a bag.
 \end{tabularx}
 %
 \\
@@ -123,61 +123,61 @@ Examples:
 \hrulefill
 
 %
-\rosverb{component} Various component related sub-commands.\\
-Sub-commands:
+\clicmd{component} Various component related verbs.\\
+Verbs:
 \\
 %
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{list}          & Output a list of running containers and components.           \\
-\smallhspace \rossubverb{load}          & Load a component into a container node.                       \\
-\smallhspace \rossubverb{standalone}    & Run a component into its own standalone container node.       \\
-\smallhspace \rossubverb{types}         & Output a list of components registered in the ament index.    \\
-\smallhspace \rossubverb{unload}        & Unload a component from a container node.
+\smallhspace \cliverb{list}          & Output a list of running containers and components.           \\
+\smallhspace \cliverb{load}          & Load a component into a container node.                       \\
+\smallhspace \cliverb{standalone}    & Run a component into its own standalone container node.       \\
+\smallhspace \cliverb{types}         & Output a list of components registered in the ament index.    \\
+\smallhspace \cliverb{unload}        & Unload a component from a container node.
 \end{tabularx}
 %
 
 \hrulefill
 
 %
-\rosverb{daemon} Various daemon related sub-commands.\\
-Sub-commands:
+\clicmd{daemon} Various daemon related verbs.\\
+Verbs:
 \\
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{start}  &  Start the daemon if it isn't running.   \\
-\smallhspace \rossubverb{status} &  Output the status of the daemon.        \\
-\smallhspace \rossubverb{stop}   &  Stop the daemon if it is running
+\smallhspace \cliverb{start}  &  Start the daemon if it isn't running.   \\
+\smallhspace \cliverb{status} &  Output the status of the daemon.        \\
+\smallhspace \cliverb{stop}   &  Stop the daemon if it is running
 \end{tabularx}
 %
 
 \hrulefill
 
 %
-\rosverb{extension\_points} List extension points.
+\clicmd{extension\_points} List extension points.
 %
 
 \hrulefill
 
 %
-\rosverb{extensions} List extensions.
+\clicmd{extensions} List extensions.
 %
 
 \hrulefill
 
 %
-\rosverb{interface} Various ROS interfaces
-(actions/topics/services)-related sub-commands.
+\clicmd{interface} Various ROS interfaces
+(actions/topics/services)-related verbs.
 Interface type can be filtered with either of the following option,
 `\ddash only-actions', `\ddash only-msgs', `\ddash only-srvs'.
 %
 \\
-Sub-commands:
+Verbs:
 \\
 %
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{list}     & List all interface types available.                            \\
-\smallhspace \rossubverb{package}  & Output a list of available interface types within one package. \\
-\smallhspace \rossubverb{packages} & Output a list of packages that provide interfaces.             \\
-\smallhspace \rossubverb{show}     & Output the interface definition.
+\smallhspace \cliverb{list}     & List all interface types available.                            \\
+\smallhspace \cliverb{package}  & Output a list of available interface types within one package. \\
+\smallhspace \cliverb{packages} & Output a list of packages that provide interfaces.             \\
+\smallhspace \cliverb{show}     & Output the interface definition.
 \end{tabularx}
 %
 Examples:
@@ -190,8 +190,8 @@ Examples:
 \hrulefill
 
 %
-\rosverb{launch} Allows to run a launch file in an arbitrary package
-without to cd there first.
+\clicmd{launch} Allows to run a launch file in an arbitrary package
+without to `cd' there first.
 \\
 Usage:
 \\
@@ -205,31 +205,31 @@ Example:
 \hrulefill
 
 %
-\rosverb{lifecycle} Various lifecycle related sub-commands.
+\clicmd{lifecycle} Various lifecycle related verbs.
 \\
-Sub-commands:
+Verbs:
 \\
 %
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{get}   & Get lifecycle state for one or more nodes.    \\
-\smallhspace \rossubverb{list}  & Output a list of available transitions.       \\
-\smallhspace \rossubverb{nodes} & Output a list of nodes with lifecycle.        \\
-\smallhspace \rossubverb{set}   & Trigger lifecycle state transition.
+\smallhspace \cliverb{get}   & Get lifecycle state for one or more nodes.    \\
+\smallhspace \cliverb{list}  & Output a list of available transitions.       \\
+\smallhspace \cliverb{nodes} & Output a list of nodes with lifecycle.        \\
+\smallhspace \cliverb{set}   & Trigger lifecycle state transition.
 \end{tabularx}
 %
 
 \hrulefill
 
 %
-\rosverb{msg} Displays debugging information about messages.
+\clicmd{msg} Displays debugging information about messages.
 \\
-Sub-commands:
+Verbs:
 \\
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{list}      & Output a list of message types.                           \\
-\smallhspace \rossubverb{package}   & Output a list of message types within a given package.    \\
-\smallhspace \rossubverb{packages}  & Output a list of packages which contain messages.         \\
-\smallhspace \rossubverb{show}      & Output the message definition.
+\smallhspace \cliverb{list}      & Output a list of message types.                           \\
+\smallhspace \cliverb{package}   & Output a list of message types within a given package.    \\
+\smallhspace \cliverb{packages}  & Output a list of packages which contain messages.         \\
+\smallhspace \cliverb{show}      & Output the message definition.
 \end{tabularx}
 %
 Examples:
@@ -243,26 +243,26 @@ Examples:
 \hrulefill
 
 %
-\rosverb{multicast} Various multicast related sub-commands.
+\clicmd{multicast} Various multicast related verbs.
 \\
-Sub-commands:
+Verbs:
 \\
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{receive}   &  Receive a single UDP multicast packet. \\
-\smallhspace \rossubverb{send}      &  Send a single UDP multicast packet.
+\smallhspace \cliverb{receive}   &  Receive a single UDP multicast packet. \\
+\smallhspace \cliverb{send}      &  Send a single UDP multicast packet.
 \end{tabularx}
 %
 
 \hrulefill
 
 %
-\rosverb{node} Displays debugging information about nodes.
+\clicmd{node} Displays debugging information about nodes.
 \\
-Sub-commands:
+Verbs:
 \\
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{info}   & Output information about a node. \\
-\smallhspace \rossubverb{list}   & Output a list of available nodes.
+\smallhspace \cliverb{info}   & Output information about a node. \\
+\smallhspace \cliverb{list}   & Output a list of available nodes.
 \end{tabularx}
 %
 Examples:
@@ -274,15 +274,15 @@ Examples:
 \hrulefill
 
 %
-\rosverb{param} Allows to manipulate parameters.
+\clicmd{param} Allows to manipulate parameters.
 \\
-Sub-commands:
+Verbs:
 \\
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{delete}    & Delete parameter.                         \\
-\smallhspace \rossubverb{get}       & Get parameter.                            \\
-\smallhspace \rossubverb{list}      & Output a list of available parameters.    \\
-\smallhspace \rossubverb{set}       & Set parameter
+\smallhspace \cliverb{delete}    & Delete parameter.                         \\
+\smallhspace \cliverb{get}       & Get parameter.                            \\
+\smallhspace \cliverb{list}      & Output a list of available parameters.    \\
+\smallhspace \cliverb{set}       & Set parameter
 \end{tabularx}
 %
 Examples:
@@ -296,16 +296,16 @@ Examples:
 \hrulefill
 
 %
-\rosverb{pkg} Create a ros2 package or output package(s)-related information.
+\clicmd{pkg} Create a ros2 package or output package(s)-related information.
 \\
-Sub-commands:
+Verbs:
 \\
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{create}        &  Create a new ROS2 package.                       \\
-\smallhspace \rossubverb{executables}   &  Output a list of package specific executables.   \\
-\smallhspace \rossubverb{list}          &  Output a list of available packages.             \\
-\smallhspace \rossubverb{prefix}        &  Output the prefix path of a package.             \\
-\smallhspace \rossubverb{xml}           &  Output the information contained in the package xml manifest.
+\smallhspace \cliverb{create}        &  Create a new ROS2 package.                       \\
+\smallhspace \cliverb{executables}   &  Output a list of package specific executables.   \\
+\smallhspace \cliverb{list}          &  Output a list of available packages.             \\
+\smallhspace \cliverb{prefix}        &  Output the prefix path of a package.             \\
+\smallhspace \cliverb{xml}           &  Output the information contained in the package xml manifest.
 \end{tabularx}
 %
 Examples:
@@ -319,8 +319,8 @@ Examples:
 \hrulefill
 
 %
-\rosverb{run} Allows to run an executable in an arbitrary package
-without having to cd there first.
+\clicmd{run} Allows to run an executable in an arbitrary package
+without having to `cd' there first.
 \\
 Usage:
 \\
@@ -334,20 +334,20 @@ Example:
 \hrulefill
 
 %
-\rosverb{security} Various security related sub-commands.
+\clicmd{security} Various security related verbs.
 \\
-Sub-commands:
+Verbs:
 \\
 %
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{create\_key}            & Create key.                                  \\
-\smallhspace \rossubverb{create\_permission}     & Create keystore.                             \\
-\smallhspace \rossubverb{generate\_artifacts}    & Create permission.                           \\
-\smallhspace \rossubverb{list\_keys}             & Distribute key.                              \\
-\smallhspace \rossubverb{create\_keystore}       & Generate keys and permission
+\smallhspace \cliverb{create\_key}            & Create key.                                  \\
+\smallhspace \cliverb{create\_permission}     & Create keystore.                             \\
+\smallhspace \cliverb{generate\_artifacts}    & Create permission.                           \\
+\smallhspace \cliverb{list\_keys}             & Distribute key.                              \\
+\smallhspace \cliverb{create\_keystore}       & Generate keys and permission
 files from a list of identities and policy files.                                               \\
-\smallhspace \rossubverb{distribute\_key}        & Generate XML policy file from ROS graph data.\\
-\smallhspace \rossubverb{generate\_policy}       & List keys.
+\smallhspace \cliverb{distribute\_key}        & Generate XML policy file from ROS graph data.\\
+\smallhspace \cliverb{generate\_policy}       & List keys.
 \end{tabularx}
 %
 Examples (see \href{https://github.com/ros2/sros2}{sros2 package}):
@@ -364,16 +364,16 @@ Examples (see \href{https://github.com/ros2/sros2}{sros2 package}):
 \hrulefill
 
 %
-\rosverb{service} Allows to manually call a service and displays debugging
+\clicmd{service} Allows to manually call a service and displays debugging
 information about services.
 \\
-Sub-commands:
+Verbs:
 \\
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{call}   & Call a service.                            \\
-\smallhspace \rossubverb{find}   & Output a list of services of a given type. \\
-\smallhspace \rossubverb{list}   & Output a list of service names.            \\
-\smallhspace \rossubverb{type}   & Output service's type.
+\smallhspace \cliverb{call}   & Call a service.                            \\
+\smallhspace \cliverb{find}   & Output a list of services of a given type. \\
+\smallhspace \cliverb{list}   & Output a list of service names.            \\
+\smallhspace \cliverb{type}   & Output service's type.
 \end{tabularx}
 %
 Examples:
@@ -388,45 +388,45 @@ Examples:
 \hrulefill
 
 %
-\rosverb{srv} Various srv related sub-commands.
+\clicmd{srv} Various srv related verbs.
 \\
-Sub-commands:
+Verbs:
 \\
 %
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{list}      & Output a list of available service types.\\
-\smallhspace \rossubverb{package}   & Output a list of available service types within one package.\\
-\smallhspace \rossubverb{packages}  & Output a list of packages which contain services.\\
-\smallhspace \rossubverb{show}      & Output the service definition.
+\smallhspace \cliverb{list}      & Output a list of available service types.\\
+\smallhspace \cliverb{package}   & Output a list of available service types within one package.\\
+\smallhspace \cliverb{packages}  & Output a list of packages which contain services.\\
+\smallhspace \cliverb{show}      & Output the service definition.
 \end{tabularx}
 %
 
 \hrulefill
 
 %
-\rosverb{test} Run a ROS2 launch test.
+\clicmd{test} Run a ROS2 launch test.
 %
 
 \hrulefill
 
 %
-\rosverb{topic} A tool for displaying debug information about ROS topics,
+\clicmd{topic} A tool for displaying debug information about ROS topics,
 including publishers, subscribers, publishing rate, and
 messages.
 \\
-Sub-commands:
+Verbs:
 \\
 %
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \rossubverb{bw}    & Display bandwidth used by topic.                  \\
-\smallhspace \rossubverb{delay} & Display delay of topic from timestamp in header.  \\
-\smallhspace \rossubverb{echo}  & Output messages of a given topic to screen.       \\
-\smallhspace \rossubverb{find}  & Find topics of a given type type.                 \\
-\smallhspace \rossubverb{hz}    & Display publishing rate of topic.                 \\
-\smallhspace \rossubverb{info}  & Output information about a given topic.           \\
-\smallhspace \rossubverb{list}  & Output list of active topics.                     \\
-\smallhspace \rossubverb{pub}   & Publish data to a topic.                          \\
-\smallhspace \rossubverb{type}  & Output topic's type.
+\smallhspace \cliverb{bw}    & Display bandwidth used by topic.                  \\
+\smallhspace \cliverb{delay} & Display delay of topic from timestamp in header.  \\
+\smallhspace \cliverb{echo}  & Output messages of a given topic to screen.       \\
+\smallhspace \cliverb{find}  & Find topics of a given type type.                 \\
+\smallhspace \cliverb{hz}    & Display publishing rate of topic.                 \\
+\smallhspace \cliverb{info}  & Output information about a given topic.           \\
+\smallhspace \cliverb{list}  & Output list of active topics.                     \\
+\smallhspace \cliverb{pub}   & Publish data to a topic.                          \\
+\smallhspace \cliverb{type}  & Output topic's type.
 \end{tabularx}
 %
 Examples:
