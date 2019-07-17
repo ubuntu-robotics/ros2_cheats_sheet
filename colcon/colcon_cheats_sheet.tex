@@ -172,6 +172,15 @@ print immediately on terminal:\\
 
 %
 \colconcmd{list} List packages, optionally in topological ordering.
+\\
+Example:
+\\
+List all package in the workspace:\\
+\terminal{colcon list} \\
+%
+List all package names in topological order up-to a given package:\\
+\terminal{colcon list \ddash names-only \ddash topological-order
+\terminalinebreak~\ddash packages-up-to demo\_nodes\_cpp}
 %
 
 \hrulefill
@@ -183,7 +192,7 @@ print immediately on terminal:\\
 %
 Examples:
 \\
-\terminal{ros2 interface show geometry\_msgs/msg/Pose}
+\terminal{todo}
 
 \hrulefill
 
@@ -196,18 +205,29 @@ Test the whole workspace:\\
 \terminal{colcon test} \\
 %
 Test a single package excluding dependencies:\\
-\terminal{colcon test --packages-select demo\_nodes\_cpp} \\
+\terminal{colcon test \ddash packages-select demo\_nodes\_cpp} \\
 %
-Test a single package including dependencies,
+Test a package including packages that depend on it:\\
+\terminal{colcon test \ddash packages-above demo\_nodes\_py} \\
+%
+Test two packages including dependencies,
 and print immediately on terminal:\\
-\terminal{colcon test --packages-select demo\_nodes\_cpp
-\terminalinebreak~\ddash event-handlers console\_direct+ \ddash pytest-args -s}
+\terminal{colcon test \ddash packages-select demo\_nodes\_cpp
+\terminalinebreak~demo\_nodes\_py
+\ddash event-handlers console\_direct+
+\terminalinebreak~\ddash pytest-args -s}
 %
 
 \hrulefill
 
 %
 \colconcmd{test-result} Show the test results generated when testing a set of packages.
+%
+\\
+Example:
+\\
+Show all test results generated, including successful tests:\\
+\terminal{colcon test-result --all}
 %
 
 \hrulefill
@@ -217,7 +237,7 @@ and print immediately on terminal:\\
 \\
 Examples:
 \\
-\terminal{ros2 msg show geometry\_msgs/msg/Pose}
+\terminal{todo}
 %
 
 \hrulefill
