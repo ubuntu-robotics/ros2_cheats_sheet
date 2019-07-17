@@ -1,0 +1,248 @@
+\documentclass[9pt,a4paper]{article}
+\usepackage[margin=1cm,landscape]{geometry}
+\geometry{
+  a4paper,
+  left=10mm,
+  right=10mm,
+  headheight=1cm,
+  top=1cm,
+  bottom=1.5cm,
+  footskip=1cm,
+  %showframe
+}
+
+%\usepackage{lipsum}
+
+\usepackage{hyperref} % For hyperlinks
+\hypersetup{
+    colorlinks=true,
+    %linkcolor=blue,
+    %filecolor=magenta,
+    urlcolor=cyan,
+}
+
+\usepackage{multicol} % For overall column layout
+\usepackage{xcolor} % For colors
+\usepackage{tabularx}
+\usepackage{fancyhdr} % For footer
+
+\pagenumbering{gobble} % No page numbering
+\pagestyle{fancy}
+\fancyhead{} % No header
+\renewcommand{\headrulewidth}{0pt} % No header rule
+
+\cfoot{\copyright~2019 Canonical} % Actual footer text
+
+% A bunch of command for boilerplate text
+\newcommand{\colconcmd}[1]{\textbf{\sffamily\color{blue}#1}~~}
+\newcommand{\colconverb}[1]{{\sffamily\color{blue}#1}~~}   %\verb already defined
+\newcommand{\textangles}[1]{\textless #1\textgreater}
+\newcommand{\smallhspace}{\-\hspace{0.3cm}}
+\newcommand{\terminalfont}[1]{{\sffamily#1}}
+\newcommand{\terminal}[1]{\-\hspace{0.5cm}\terminalfont{\$ #1}}
+\newcommand{\terminalinebreak}[1]{\ \textbackslash\hfill\phantom{.}\linebreak\-\hspace{0.5cm}~}
+\newcommand{\ddash}{-{}-}
+
+\begin{document}
+\setlength\parindent{0pt}
+\begin{multicols*}{3}[]
+
+\begin{center}
+  \textbf{\Large ROS 2 Cheats Sheet}
+\end{center}
+%
+
+\hrulefill
+
+\textbf{colcon - collective construction}\\
+colcon is a command line tool to improve the workflow of building,
+testing and using multiple software packages.
+It automates the process,
+handles the ordering and sets up the environment to use the packages.
+
+All colcon tools start with the prefix `colcon' followed by a command
+and (likely) positional/optional arguments.
+
+For any tool, the documentation is accessible with,\\
+%
+\terminal{colcon \colconcmd{command} \ddash help}\\
+%
+Moreover, colcon offers auto-completion for all verbs and
+most positional/optional arguments. E.g.,\\
+%
+\terminal{colcon \colconcmd{command} [tab][tab]}
+
+Find out how to enable auto-completion at
+\href{https://colcon.readthedocs.io/en/released/index.html}
+{colcon's online documentation}.
+
+\hrulefill
+
+Environment variables:\\
+%
+% \begin{tabularx}{\linewidth}{X}
+$\circ$ \terminalfont{CMAKE\_COMMAND}
+The full path to the CMake executable.                                    \\
+%
+$\circ$ \terminalfont{COLCON\_ALL\_SHELLS}
+Flag to enable all shell extensions.                                      \\
+%
+$\circ$ \terminalfont{COLCON\_COMPLETION\_LOGFILE}
+Set the logfile for completion time.                                      \\
+%
+$\circ$ \terminalfont{COLCON\_DEFAULTS\_FILE}
+Set path to the yaml file containing the default values for
+the command line arguments (default:\$COLCON\_HOME/defaults.yaml).        \\
+%
+$\circ$ \terminalfont{COLCON\_DEFAULT\_EXECUTOR}
+Select the default executor extension.                                    \\
+%
+$\circ$ \terminalfont{COLCON\_EXTENSION\_BLACKLIST}
+Blacklist extensions which should not be used.                            \\
+%
+$\circ$ \terminalfont{COLCON\_HOME}
+Set the configuration directory (default: ~/.colcon.)                     \\
+%
+$\circ$ \terminalfont{COLCON\_LOG\_LEVEL}
+Set the log level (debug|10, info|20, warn|30, error|40, critical|50,
+or any other positive numeric value).                                     \\
+%
+$\circ$ \terminalfont{COLCON\_LOG\_PATH}
+Set the log directory (default: \$COLCON\_HOME/log).                      \\
+%
+$\circ$ \terminalfont{CTEST\_COMMAND}
+The full path to the CTest executable.                                    \\
+%
+$\circ$ \terminalfont{POWERSHELL\_COMMAND}
+The full path to the PowerShell executable.
+%
+% \end{tabularx}
+%
+
+\hrulefill
+
+Global options:\\
+%
+$\circ$ \terminalfont{\ddash log-base \textangles{path}}
+The base path for all log directories (default: log). \\
+%
+$\circ$ \terminalfont{\ddash log-level \textangles{level}}
+Set log level for the console output, either by numeric or string value (default: warn)
+
+\hrulefill
+
+%
+\colconcmd{build} Build a set of packages.
+\\
+Examples:
+\\
+Build the whole workspace: \\
+\terminal{colcon build} \\
+%
+Build a single package excluding dependencies: \\
+\terminal{colcon build \ddash packages-selected demo\_nodes\_cpp} \\
+%
+Build two packages including dependencies,
+use symlinks instead of copying files where possible and
+print immediately on terminal:\\
+\terminal{colcon build \ddash packages-up-to demo\_nodes\_cpp
+\terminalinebreak~action\_tutorials \ddash symlink-install
+\terminalinebreak~\ddash event-handlers console\_direct+}
+%
+
+\hrulefill
+
+%
+\colconcmd{extension-points} List extension points.
+%
+
+\hrulefill
+
+%
+\colconcmd{extensions} Package information.
+%
+
+\hrulefill
+
+%
+\colconcmd{info} List extension points.
+%
+
+\hrulefill
+
+%
+\colconcmd{list} List packages, optionally in topological ordering.
+%
+
+\hrulefill
+
+%
+\colconcmd{metadata} Manage metadata of packages.
+%
+\\
+%
+Examples:
+\\
+\terminal{ros2 interface show geometry\_msgs/msg/Pose}
+
+\hrulefill
+
+%
+\colconcmd{test} Test a set of packages.
+\\
+Example:
+\\
+Test the whole workspace:\\
+\terminal{colcon test} \\
+%
+Test a single package excluding dependencies:\\
+\terminal{colcon test --packages-select demo\_nodes\_cpp} \\
+%
+Test a single package including dependencies,
+and print immediately on terminal:\\
+\terminal{colcon test --packages-select demo\_nodes\_cpp
+\terminalinebreak~\ddash event-handlers console\_direct+ \ddash pytest-args -s}
+%
+
+\hrulefill
+
+%
+\colconcmd{test-result} Show the test results generated when testing a set of packages.
+%
+
+\hrulefill
+
+%
+\colconcmd{version-check} Compare local package versions with PyPI.
+\\
+Examples:
+\\
+\terminal{ros2 msg show geometry\_msgs/msg/Pose}
+%
+
+\hrulefill
+
+Must know colcon flags.
+
+\terminalfont{\ddash symlink-install}
+
+\terminalfont{\ddash event-handlers console\_direct+}
+Show output on console.
+
+\terminalfont{\ddash event-handlers console\_cohesion+}
+Show output on console after a package has finished.
+
+\terminalfont{\ddash packages-select}
+Build only specific package(s).
+
+\terminalfont{\ddash packages-up-to}
+Build specific package(s) and its/their dependencies.
+
+\terminalfont{\ddash packages-above}
+Build package(s) depending on specific package(s).
+
+\terminalfont{\ddash packages-above}
+Build package(s) depending on specific package(s).
+
+\end{multicols*}
+\end{document}
