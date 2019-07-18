@@ -82,38 +82,49 @@ Environment variables:\\
 %
 % \begin{tabularx}{\linewidth}{X}
 $\circ$ \terminalfont{CMAKE\_COMMAND}
+\smallhspace
 The full path to the CMake executable.                                    \\
 %
 $\circ$ \terminalfont{COLCON\_ALL\_SHELLS}
+\smallhspace
 Flag to enable all shell extensions.                                      \\
 %
 $\circ$ \terminalfont{COLCON\_COMPLETION\_LOGFILE}
+\smallhspace
 Set the logfile for completion time.                                      \\
 %
 $\circ$ \terminalfont{COLCON\_DEFAULTS\_FILE}
+\smallhspace
 Set path to the yaml file containing the default values for
 the command line arguments (default:\$COLCON\_HOME/defaults.yaml).        \\
 %
 $\circ$ \terminalfont{COLCON\_DEFAULT\_EXECUTOR}
+\smallhspace
 Select the default executor extension.                                    \\
 %
 $\circ$ \terminalfont{COLCON\_EXTENSION\_BLACKLIST}
+\smallhspace
 Blacklist extensions which should not be used.                            \\
 %
 $\circ$ \terminalfont{COLCON\_HOME}
+\smallhspace
 Set the configuration directory (default: ~/.colcon.)                     \\
 %
 $\circ$ \terminalfont{COLCON\_LOG\_LEVEL}
+\smallhspace
 Set the log level (debug|10, info|20, warn|30, error|40, critical|50,
 or any other positive numeric value).                                     \\
 %
 $\circ$ \terminalfont{COLCON\_LOG\_PATH}
+\smallhspace
 Set the log directory (default: \$COLCON\_HOME/log).                      \\
 %
 $\circ$ \terminalfont{CTEST\_COMMAND}
+\smallhspace
 The full path to the CTest executable.                                    \\
 %
 $\circ$ \terminalfont{POWERSHELL\_COMMAND}
+\smallhspace
 The full path to the PowerShell executable.
 %
 % \end{tabularx}
@@ -188,11 +199,11 @@ List all packages names in topological order up-to a given package:\\
 %
 \colconcmd{metadata} Manage metadata of packages.
 %
-\\
+% \\
 %
-Examples:
-\\
-\terminal{todo}
+% Examples:
+% \\
+% \terminal{todo}
 
 \hrulefill
 
@@ -227,7 +238,7 @@ and print immediately on terminal:\\
 Example:
 \\
 Show all test results generated, including successful tests:\\
-\terminal{colcon test-result --all}
+\terminal{colcon test-result \ddash all}
 %
 
 \hrulefill
@@ -244,25 +255,58 @@ Examples:
 
 Must know colcon flags.
 
-\terminalfont{\ddash symlink-install}
+$\circ$ \terminalfont{\ddash symlink-install}
+\smallhspace
+Use `symlinks' instead of installing (copying) files where possible.
 
-\terminalfont{\ddash event-handlers console\_direct+}
+$\circ$ \terminalfont{\ddash continue-on-error}
+\smallhspace
+Continue other packages when a package fails to build.
+Packages recursively depending on the failed package are skipped.
+
+$\circ$ \terminalfont{\ddash event-handlers console\_direct+}
+\smallhspace
 Show output on console.
 
-\terminalfont{\ddash event-handlers console\_cohesion+}
+$\circ$ \terminalfont{\ddash event-handlers console\_cohesion+}
+\smallhspace
 Show output on console after a package has finished.
 
-\terminalfont{\ddash packages-select}
+$\circ$ \terminalfont{\ddash packages-select}
+\smallhspace
 Build only specific package(s).
 
-\terminalfont{\ddash packages-up-to}
-Build specific package(s) and its/their dependencies.
+$\circ$ \terminalfont{\ddash packages-up-to}
+\smallhspace
+Build specific package(s) and its/their recursive dependencies.
 
-\terminalfont{\ddash packages-above}
-Build package(s) depending on specific package(s).
+$\circ$ \terminalfont{\ddash packages-above}
+\smallhspace
+Build specific package(s) and other packages that recursively depending on it.
 
-\terminalfont{\ddash packages-above}
-Build package(s) depending on specific package(s).
+$\circ$ \terminalfont{\ddash packages-skip}
+\smallhspace
+Skip package(s).
+
+$\circ$ \terminalfont{\ddash packages-skip-build-finished}
+\smallhspace
+Skip a set of packages which have finished to build previously.
+
+$\circ$ \terminalfont{\ddash cmake-args}
+\smallhspace
+Pass arguments to CMake projects.
+
+$\circ$ \terminalfont{\ddash cmake-clean-cache}
+\smallhspace
+Remove CMake cache before the build (implicitly forcing CMake configure step).
+
+$\circ$ \terminalfont{\ddash cmake-clean-first}
+\smallhspace
+Build target `clean' first, then build (to only clean use '--cmake-target clean').
+
+$\circ$ \terminalfont{\ddash cmake-force-configure}
+\smallhspace
+Force CMake configure step.
 
 \end{multicols*}
 \end{document}
