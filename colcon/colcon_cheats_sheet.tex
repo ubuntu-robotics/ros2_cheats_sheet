@@ -222,11 +222,15 @@ Test a package including packages that depend on it:\\
 \terminal{colcon test \ddash packages-above demo\_nodes\_py} \\
 %
 Test two packages including dependencies,
-and print immediately on terminal:\\
+and print on terminal:\\
 \terminal{colcon test \ddash packages-up-to demo\_nodes\_cpp
 \terminalinebreak~demo\_nodes\_py
-\ddash event-handlers console\_direct+
-\terminalinebreak~\ddash pytest-args -s}
+\ddash event-handlers console\_direct+} \\
+%
+Pass arguments to pytest (e.g. to print a coverage report):\\
+\terminal{colcon test \ddash packages-select demo\_nodes\_cpp
+\terminalinebreak~\ddash event-handlers console\_direct+
+\terminalinebreak~\ddash pytest-args \ddash cov=sros2}
 %
 
 \hrulefill
