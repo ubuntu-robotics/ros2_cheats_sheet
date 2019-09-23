@@ -191,6 +191,7 @@ Verbs:
 \smallhspace \cliverb{list}     & List all interface types available.                            \\
 \smallhspace \cliverb{package}  & Output a list of available interface types within one package. \\
 \smallhspace \cliverb{packages} & Output a list of packages that provide interfaces.             \\
+\smallhspace \cliverb{proto}    & Print the prototype (body) of an interfaces.                   \\
 \smallhspace \cliverb{show}     & Output the interface definition.
 \end{tabularx}
 %
@@ -199,6 +200,7 @@ Examples:
 \terminal{ros2 interface list} \\
 \terminal{ros2 interface package std\_msgs} \\
 \terminal{ros2 interface packages \ddash only-msgs} \\
+\terminal{ros2 interface proto example\_interfaces/srv/AddTwoInts} \\
 \terminal{ros2 interface show geometry\_msgs/msg/Pose}
 
 \hrulefill
