@@ -464,7 +464,31 @@ Examples:
 \terminal{ros2 topic list}                                \\
 \terminal{ros2 topic pub /chatter std\_msgs/msg/String
 \terminalinebreak~'data: Hello ROS 2 world'}              \\
-\terminal{ros2 topic type /rosout}                        \\
+\terminal{ros2 topic type /rosout}                        
+%
 
+\hrulefill
+
+%
+\clicmd{doctor} Alias: wtf (where's the fire). A tool to check ROS setup 
+and other potential issues such as network, package versions, rmw
+middleware etc. 
+\\
+Arguments:
+\\
+%
+\begin{tabularx}{\linewidth}{lX}
+\smallhspace \cliverb{--report/-r}   & Output report of all checks.  \\
+\smallhspace \cliverb{--report-fail/-rf} & Output report of failed checks only.  \\
+\smallhspace \cliverb{--include-warning/-iw}  & Include warnings as failed checks. \\
+\end{tabularx}
+%
+Examples:
+\\
+\terminal{ros2 doctor} or \terminal{ros2 wtf} \\
+\terminal{ros2 doctor -r}         \\
+\terminal{ros2 doctor -rf}        \\
+\terminal{ros2 doctor -iw}        \\
+\terminal{ros2 doctor -iw -rf}     \\
 \end{multicols*}
 \end{document}
