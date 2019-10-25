@@ -36,6 +36,7 @@
 % A bunch of command for boilerplate text
 \newcommand{\clicmd}[1]{\textbf{\sffamily\color{blue}#1}~~}
 \newcommand{\cliverb}[1]{{\sffamily\color{blue}#1}~~}
+\newcommand{\cliopt}[1]{{\sffamily#1}~~}
 \newcommand{\textangles}[1]{\textless #1\textgreater}
 \newcommand{\smallhspace}{\-\hspace{0.3cm}}
 \newcommand{\terminal}[1]{\-\hspace{0.5cm}{\sffamily\$ #1}}
@@ -159,15 +160,27 @@ Verbs:
 \hrulefill
 
 %
-\clicmd{doctor} Print information about the ROS 2 setup and look
-for potential issues.\\
-Alias: \clicmd{wtf}
+\clicmd{doctor} A tool to check ROS setup and other potential issues such as network, package versions,
+rmw middleware etc. \\
+Alias: \clicmd{wtf} (where's the fire). \\
 %
-\\
+Arguments: \\
+%
+\begin{tabularx}{\linewidth}{lX}
+\smallhspace \cliopt{\ddash report/-r}           & Output report of all checks.         \\
+\smallhspace \cliopt{\ddash report-fail/-rf}     & Output report of failed checks only. \\
+\smallhspace \cliopt{\ddash include-warning/-iw} & Include warnings as failed checks.   \\
+\end{tabularx}
+%
 Examples:
 \\
-\terminal{ros2 doctor}\\
-\terminal{ros2 doctor --report}
+\terminal{ros2 doctor}                                            \\
+\terminal{ros2 doctor \ddash report}                              \\
+\terminal{ros2 doctor \ddash report-fail}                         \\
+\terminal{ros2 doctor \ddash include-warning}                     \\
+\terminal{ros2 doctor \ddash include-warning \ddash report-fail}  \\
+or similarly,                                                     \\
+\terminal{ros2 wtf}
 %
 
 \hrulefill
