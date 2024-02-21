@@ -31,7 +31,7 @@
 \fancyhead{} % No header
 \renewcommand{\headrulewidth}{0pt} % No header rule
 
-\cfoot{\copyright~2019 Canonical} % Actual footer text
+\cfoot{\copyright~2024 Canonical} % Actual footer text
 
 % A bunch of command for boilerplate text
 \newcommand{\clicmd}[1]{\textbf{\sffamily\color{blue}#1}~~}
@@ -88,8 +88,7 @@ Verbs:
 \begin{tabularx}{\linewidth}{lX}
 \smallhspace \cliverb{info}        & Output information about an action. \\
 \smallhspace \cliverb{list}        & Output a list of action names.      \\
-\smallhspace \cliverb{send\_goal}  & Send an action goal.                \\
-\smallhspace \cliverb{show}        &  Output the action definition.
+\smallhspace \cliverb{send\_goal}  & Send an action goal.               
 \end{tabularx}
 %
 Examples:
@@ -97,8 +96,7 @@ Examples:
 \terminal{ros2 action info /fibonacci} \\
 \terminal{ros2 action list} \\
 \terminal{ros2 action send\_goal /fibonacci
-\terminalinebreak~action\_tutorials/action/Fibonacci "{order: 5}"} \\
-\terminal{ros2 action show action\_tutorials/action/Fibonacci}
+\terminalinebreak~action\_tutorials/action/Fibonacci "{order: 5}"}
 
 \hrulefill
 
@@ -109,17 +107,22 @@ Verbs:
 \\
 %
 \begin{tabularx}{\linewidth}{lX}
+\smallhspace \cliverb{convert}      & Write out a new bag with different settings.\\
 \smallhspace \cliverb{info}      & Output information of a bag.\\
+\smallhspace \cliverb{list}      & Output list of available plugins.\\
 \smallhspace \cliverb{play}      & Play a bag.\\
-\smallhspace \cliverb{record}    & Record a bag.
+\smallhspace \cliverb{record}    & Record a bag.\\
+\smallhspace \cliverb{reindex}    & Reconstruct metadata file for a bag.\\
 \end{tabularx}
 %
 \\
 Examples:
 \\
-\terminal{ros2 info \textangles{bag-name}}\\
-\terminal{ros2 play \textangles{bag-name}}\\
-\terminal{ros2 record -a}
+\terminal{ros2 bag convert \ddash input \textangles{bag-name} storage\_id
+\terminalinebreak~ \ddash output-options \textangles{settings-file-name}}\\
+\terminal{ros2 bag info \textangles{bag-name}}\\
+\terminal{ros2 bag play \textangles{bag-name}}\\
+\terminal{ros2 bag record -a}
 %
 
 \hrulefill
@@ -161,8 +164,7 @@ Verbs:
 \hrulefill
 
 %
-\clicmd{doctor} A tool to check ROS setup and other potential issues such as network, package versions,
-rmw middleware etc. \\
+\clicmd{doctor} Check ROS setup and other potential issues \\
 Alias: \clicmd{wtf} (where's the fire). \\
 %
 Arguments: \\
@@ -257,27 +259,6 @@ Verbs:
 
 \hrulefill
 
-%
-\clicmd{msg} \deprecated~Displays debugging information about messages.
-\\
-Verbs:
-\\
-\begin{tabularx}{\linewidth}{lX}
-\smallhspace \cliverb{list}      & Output a list of message types.                           \\
-\smallhspace \cliverb{package}   & Output a list of message types within a given package.    \\
-\smallhspace \cliverb{packages}  & Output a list of packages which contain messages.         \\
-\smallhspace \cliverb{show}      & Output the message definition.
-\end{tabularx}
-%
-Examples:
-\\
-\terminal{ros2 msg list} \\
-\terminal{ros2 msg package std\_msgs} \\
-\terminal{ros2 msg packages} \\
-\terminal{ros2 msg show geometry\_msgs/msg/Pose}
-%
-
-\hrulefill
 
 %
 \clicmd{multicast} Various multicast related verbs.
@@ -318,18 +299,19 @@ Verbs:
 \begin{tabularx}{\linewidth}{lX}
 \smallhspace \cliverb{delete}    & Delete parameter.                         \\
 \smallhspace \cliverb{describe}  & Show descriptive information about declared parameters. \\
-\smallhspace \cliverb{dump}      & Dump the parameters of a given node in yaml format, either in terminal or in a file.\\
+\smallhspace \cliverb{dump}      & Dump the parameters of a given node in YAML format, either in terminal or in a file.\\
 \smallhspace \cliverb{get}       & Get parameter.                            \\
 \smallhspace \cliverb{list}      & Output a list of available parameters.    \\
+\smallhspace \cliverb{load}      & Load parameter file for a node.    \\
 \smallhspace \cliverb{set}       & Set parameter
 \end{tabularx}
 %
 Examples:
 \\
-\terminal{ros2 param delete /talker /use\_sim\_time}    \\
-\terminal{ros2 param get /talker /use\_sim\_time}       \\
+\terminal{ros2 param delete /talker \textangles{param-name}}    \\
+\terminal{ros2 param get /talker \textangles{param-name}}       \\
 \terminal{ros2 param list}                              \\
-\terminal{ros2 param set /talker /use\_sim\_time false}
+\terminal{ros2 param set /talker \textangles{param-name} \textangles{param-value}}
 %
 
 \hrulefill
@@ -340,11 +322,11 @@ Examples:
 Verbs:
 \\
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \cliverb{create}        &  Create a new ROS2 package.                       \\
+\smallhspace \cliverb{create}        &  Create a new ROS 2 package.                      \\
 \smallhspace \cliverb{executables}   &  Output a list of package specific executables.   \\
 \smallhspace \cliverb{list}          &  Output a list of available packages.             \\
 \smallhspace \cliverb{prefix}        &  Output the prefix path of a package.             \\
-\smallhspace \cliverb{xml}           &  Output the information contained in the package xml manifest.
+\smallhspace \cliverb{xml}           &  Output the XML of the package manifest or a specific tag.
 \end{tabularx}
 %
 Examples:
@@ -379,19 +361,17 @@ Verbs:
 \\
 %
 \begin{tabularx}{\linewidth}{lX}
-\smallhspace \cliverb{create\_key}            & Create key.                                  \\
-\smallhspace \cliverb{create\_permission}     & Create keystore.                             \\
-\smallhspace \cliverb{generate\_artifacts}    & Create permission.                           \\
-\smallhspace \cliverb{list\_keys}             & Distribute key.                              \\
-\smallhspace \cliverb{create\_keystore}       & Generate keys and permission
-files from a list of identities and policy files.                                               \\
-\smallhspace \cliverb{distribute\_key}        & Generate XML policy file from ROS graph data.\\
-\smallhspace \cliverb{generate\_policy}       & List keys.
+\smallhspace \cliverb{create\_enclave}        & Create enclave.                              \\
+\smallhspace \cliverb{create\_keystore}       & Create keystore.                             \\
+\smallhspace \cliverb{create\_permission}     & Create permission.                           \\
+\smallhspace \cliverb{generate\_artifacts}    & Generate keys and permission files from a list of identities and policy files.                           \\      
+\smallhspace \cliverb{generate\_policy}       & Generate XML policy file from ROS graph data.                                   \\
+\smallhspace \cliverb{list\_enclaves}         & List enclaves in keystore.                                      
 \end{tabularx}
 %
 Examples (see \href{https://github.com/ros2/sros2}{sros2 package}):
 \\
-\terminal{ros2 security create\_key demo\_keys /talker}   \\
+\terminal{ros2 security create\_enclave demo\_keys /talker}   \\
 \terminal{ros2 security create\_permission demo\_keys /talker
 \terminalinebreak~policies/sample\_policy.xml} \\
 \terminal{ros2 security generate\_artifacts} \\
@@ -427,29 +407,7 @@ Examples:
 \hrulefill
 
 %
-\clicmd{srv} \deprecated~Various srv related verbs.
-\\
-Verbs:
-\\
-%
-\begin{tabularx}{\linewidth}{lX}
-\smallhspace \cliverb{list}      & Output a list of available service types.\\
-\smallhspace \cliverb{package}   & Output a list of available service types within one package.\\
-\smallhspace \cliverb{packages}  & Output a list of packages which contain services.\\
-\smallhspace \cliverb{show}      & Output the service definition.
-\end{tabularx}
-%
-
-\hrulefill
-
-%
-\clicmd{test} Run a ROS2 launch test.
-%
-
-\hrulefill
-
-%
-\clicmd{topic} A tool for displaying debug information about ROS topics,
+\clicmd{topic} A tool for displaying debug information about ROS~2 topics,
 including publishers, subscribers, publishing rate, and
 messages.
 \\
@@ -478,7 +436,7 @@ Examples:
 \terminal{ros2 topic info /chatter}                       \\
 \terminal{ros2 topic list}                                \\
 \terminal{ros2 topic pub /chatter std\_msgs/msg/String
-\terminalinebreak~'data: Hello ROS 2 world'}              \\
+\terminalinebreak~"data: 'Hello ROS 2 world'"}            \\
 \terminal{ros2 topic type /rosout}                        \\
 
 \end{multicols*}
